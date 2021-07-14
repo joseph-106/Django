@@ -1,0 +1,14 @@
+{% for blog in blogs.all%}
+    <h1>{{blog.title}}</h1>
+    <p>{{blog.pub_date}}</p>
+    <p>{{blog.body}}</p>
+    <br><br>
+{%endfor%}
+
+<!--
+    쿼리셋과 메소드의 형식
+    모델.쿼리셋(objects).메소드
+
+    즉, 'blogs.all' = 'Blog.objects.all' 
+    * all은 해당 쿼리셋의 데이터를 모두 지칭하는 메소드
+!-->
