@@ -7,3 +7,6 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title # 글 제목이 타이틀로 보이도록
+
+    def summary(self):
+        return self.body[:100]
