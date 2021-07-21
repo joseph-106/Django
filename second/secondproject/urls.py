@@ -21,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', blog.views.home, name="home"),
     path('hello/', blog.views.hello, name="hello"),
-    path('blog/<int:blog_id>',blog.views.detail, name="detail"),
+    path('blog/<int:blog_id>',blog.views.detail, name="detail"), #blog/숫자 형태의 url이 나오도록 int를 views.py의 detail 함수로 받아줌
+    path('blog/new/',blog.views.new, name="new"),
+    path('blog/create/',blog.views.create, name="create"),  
 ]

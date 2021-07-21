@@ -46,11 +46,16 @@
               </div>
             </div>
         </nav>
-        <div style="margin: 1.5rem;">
-            <br>
-            <h2>{{blog.title}}</h2>
-            <p>{{blog.pub_date}}</p>
-            <p>{{blog.body}}</p>
+        <div style="margin: 2rem;">
+            <form action="{%url 'create'%}">
+                <h3>제목:</h3>
+                <input type="text" name="title">
+                <br><br>
+                <h3>본문:</h3>
+                <textarea cols="40" rows="10" name="body"></textarea>
+                <br><br>
+                <input class="btn btn-dark" type="submit" value="제출하기">
+            </form>
         </div>
     </div>
 </body>
