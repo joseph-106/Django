@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block contents %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=r0fczs76q0"></script>
+</head>
 <body>
   <div>
     <!--안겹치는 부분-->
@@ -34,6 +38,47 @@
     <a href="?page={{posts.next_page_number}}">Next</a>
     <a href="?page={{posts.paginator.num_pages}}">Last</a>
     {%endif%}   
+  </div>
+  <div style="text-align:center;">
+    <br>
+    <!--지도 API-->
+    <div id="map" style="width:50%;height:400px;margin:10px;display: inline-block;"></div>
+    <script>
+      var HOME_PATH = window.HOME_PATH || '.';
+
+      var hufs = new naver.maps.LatLng(37.5967632,127.0558228),
+          map = new naver.maps.Map('map', {
+              center: hufs.destinationPoint(0, 500),
+              zoom: 16
+          }),
+          marker = new naver.maps.Marker({
+              map: map,
+              position: hufs
+          });
+
+      var contentString = [
+              '<div class="iw_inner">',
+              '   <h3>한국외국어대학교 서울캠퍼스</h3>',
+              '   <p>서울특별시 동대문구 이문동 이문로 107<br />',
+              '       <a href="http://www.hufs.ac.kr/" target="_blank">www.hufs.ac.kr/</a>',
+              '   </p>',
+              '</div>'
+          ].join('');
+
+      var infowindow = new naver.maps.InfoWindow({
+          content: contentString
+      });
+
+      naver.maps.Event.addListener(marker, "click", function(e) {
+          if (infowindow.getMap()) {
+              infowindow.close();
+          } else {
+              infowindow.open(map, marker);
+          }
+      });
+
+      infowindow.open(map, marker);
+    </script>
   </div>
 </body>
 {% endblock %}
